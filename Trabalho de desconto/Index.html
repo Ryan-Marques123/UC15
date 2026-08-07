@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Desconto</title>
+   
+</head>
+<body>
+    <h1>Calculadora de Desconto da Loja</h1>
+    <form id="descontoForm">
+        <div>
+            <label for="nomeCliente">Nome do cliente:</label><br>
+            <input type="text" id="nomeCliente" name="nomeCliente" placeholder="Inserir nome" required>
+        </div>
+        <div style="margin-top: 12px;">
+            <label for="valorCompra">Valor da compra (R$):</label><br>
+            <input type="number" id="valorCompra" name="valorCompra" placeholder="Coloque valor" step="0.01" min="0" required>
+        </div>
+        <div style="margin-top: 12px;">
+            <label>
+                <input type="checkbox" id="clienteVip" name="clienteVip">
+                Cliente VIP
+            </label>
+        </div>
+        <button type="submit" style="margin-top: 16px; padding: 8px 16px;">Calcular desconto</button>
+    </form>
+    <div class="resultado" id="resultado"></div>
+    <script src="script.js"></script>
+</body>
+</html>
