@@ -30,7 +30,7 @@ function verificarClima(){
 	} else if (temperatura >= 15) {
 		classificacao = 'O clima tá bom! 😁👌'
 	} else {
-		classificacao = 'Está frio bro! 🥶☃️'
+		classificacao = 'Está frio mano! 🥶☃️'
 	}
 
 	elTemperatura.textContent = `Temperatura informada: ${temperatura}°C`
