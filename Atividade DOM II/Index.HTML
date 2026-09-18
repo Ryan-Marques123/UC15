@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel de Viagem</title>
+  </head>
+  <body>
+    <h1 id="titulo">Painel de Viagem</h1>
+
+    <label for="cidade">Digite uma cidade:</label>
+    <input id="cidade" type="text" />
+
+    <button id="botaoCidade" type="button" onclick="mostrarCidade()">
+      Exibir mensagem
+    </button>
+
+    <p id="mensagem"></p>
+
+    <button id="botaoEstilo" type="button" onclick="destacarMensagem()">
+      Destacar mensagem
+    </button>
+
+    <div>
+      <button id="botaoMenos" type="button" onclick="diminuirContador()">-</button>
+      <span id="valorContador">10</span>
+      <button id="botaoMais" type="button" onclick="aumentarContador()">+</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
