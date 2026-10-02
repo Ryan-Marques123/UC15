@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENAC Filmes</title>
+   
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-block">
+
+          </svg>
+          <div>
+            <p class="eyebrow">Plataforma de cinema</p>
+            <h1>SENAC Filmes</h1>
+          </div>
+        </div>
+
+        <label class="search-wrap" aria-label="Buscar filmes">
+          <span class="search-icon">⌕</span>
+          <input id="movieSearch" type="search" placeholder="Pesquisar filmes..." />
+        </label>
+      </header>
+
+      <main class="content">
+        <aside class="sidebar">
+          <section class="panel">
+            <p class="panel-title">Categorias</p>
+            <div id="categoryFilter" class="category-filter" aria-label="Filtros por categoria"></div>
+          </section>
+
+          <section class="panel favorites-panel">
+            <div class="favorites-header">
+              <p class="panel-title">Favoritos</p>
+              <span id="favoritesCount" class="favorite-badge">0</span>
+            </div>
+            <div id="favoriteList" class="favorite-list" aria-live="polite"></div>
+          </section>
+        </aside>
+
+        <section class="catalog-area">
+          <div class="catalog-heading">
+            <div>
+              <p class="eyebrow">Descubra</p>
+              <h2>Catálogo de filmes</h2>
+            </div>
+            <button id="clearFiltersBtn" class="ghost-button" type="button">Limpar filtros</button>
+          </div>
+
+          <div id="movieGrid" class="movie-grid" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="movieModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="close-modal" type="button" aria-label="Fechar modal">×</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
