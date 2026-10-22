@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ryan Marques | Portfólio Front-end</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="cabecalho">
+    <a class="logo" href="#inicio">Ryan Marques</a>
+    <button class="botao-icone botao-menu" id="botaoMenu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menuPrincipal">☰</button>
+    <nav class="menu" id="menuPrincipal" aria-label="Menu principal">
+      <a href="#sobre">Sobre mim</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="botao-icone" id="botaoTema" type="button" aria-label="Alternar entre tema claro e escuro">◐</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div>
+        <p class="saudacao" id="saudacao">Olá, eu sou</p>
+        <h1><span>Ryan</span> <span>Marques</span></h1>
+        <p class="apresentacao">Estudante de Desenvolvimento de Sistemas no SENAC, criando sites responsivos e acessíveis.</p>
+        <a class="botao" href="#projetos">Ver meus projetos</a>
+      </div>
+      <img class="avatar" src="img/avatar.svg" alt="Avatar ilustrado de Ryan Marques em tons de roxo, com um corte vermelho na diagonal" width="400" height="400">
+    </section>
+
+    <section id="sobre">
+      <h2>Sobre mim</h2>
+      <p>Sou o Ryan e faço o curso Técnico em Desenvolvimento de Sistemas no SENAC. Cheguei à tecnologia pelos jogos: sempre quis entender como uma tela, um menu e um botão viram uma experiência.</p>
+      <p>Hoje estou aprendendo a montar interfaces responsivas e acessíveis com HTML, CSS e JavaScript. Quero evoluir em front-end e conseguir meu primeiro estágio na área.</p>
+    </section>
+
+    <section id="habilidades">
+      <h2>Habilidades</h2>
+      <ul class="grade-habilidades">
+        <li><span class="habilidade">HTML</span><span class="nivel nivel-3">Confortável</span></li>
+        <li><span class="habilidade">CSS</span><span class="nivel nivel-2">Praticando</span></li>
+        <li><span class="habilidade">JavaScript</span><span class="nivel nivel-1">Iniciante</span></li>
+        <li><span class="habilidade">Figma</span><span class="nivel nivel-2">Praticando</span></li>
+      </ul>
+    </section>
+
+    <section id="projetos">
+      <h2>Projetos</h2>
+      <div class="grade-projetos" id="listaProjetos"></div>
+    </section>
+
+    <section id="contato">
+      <h2>Contato</h2>
+      <form id="formularioContato" novalidate>
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" autocomplete="name" aria-describedby="erroNome">
+          <p class="erro" id="erroNome"></p>
+        </div>
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" autocomplete="email" aria-describedby="erroEmail">
+          <p class="erro" id="erroEmail"></p>
+        </div>
+        <div class="campo">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="5" aria-describedby="erroMensagem"></textarea>
+          <p class="erro" id="erroMensagem"></p>
+        </div>
+        <div class="campo campo-consentimento">
+          <input type="checkbox" id="consentimento" name="consentimento" aria-describedby="erroConsentimento">
+          <label for="consentimento">Concordo em compartilhar meus dados para receber uma resposta.</label>
+          <p class="erro" id="erroConsentimento"></p>
+        </div>
+        <p class="aviso">Aviso de privacidade: seu nome e e-mail seriam usados só para responder esta mensagem e não seriam compartilhados com ninguém.</p>
+        <button class="botao" type="submit">Enviar mensagem</button>
+        <p class="sucesso" id="mensagemSucesso" role="status"></p>
+      </form>
+      <!-- Troque pelos links dos seus perfis -->
+      <ul class="links-contato">
+        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>© <span id="anoAtual">2026</span> Ryan Marques</p>
+    <a href="#inicio">Voltar ao topo</a>
+  </footer>
+  <a class="botao-topo" id="botaoTopo" href="#inicio" aria-label="Voltar ao topo">↑</a>
+</body>
+</html>
