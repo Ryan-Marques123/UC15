@@ -1,18 +1,21 @@
-/* Fontes: Barlow Condensed é parecida com a Highway Gothic (placas de estrada),
-   apontada pela comunidade do jogo; Barlow cuida do texto corrido. */
 :root {
-  --fonte-titulo: "Permanent Marker", "Verdana", cursive;
+  --fonte-titulo: "Arial Black", "Segoe UI", sans-serif;
   --fonte-texto: "Verdana", "Segoe UI", sans-serif;
-  --fundo: #ffffff;
-  --superficie: #f4f9ff;
-  --borda: #dceafc;
-  --texto: #10233d;
-  --texto-suave: #53627a;
-  --cor-primaria: #1d7ae7;
-  --cor-link: #0d67c2;
-  --cor-destaque: #f4c542;
-  --cor-erro: #d34d4d;
-  --cor-sucesso: #23896b;
+  --fundo: #dfe3e8;
+  --superficie: #ebedf1;
+  --borda: #c9d0db;
+  --texto: #0f2341;
+  --texto-suave: #53667f;
+  --cor-primaria: #1c2d5b;
+  --cor-link: #2a4d8a;
+  --cor-destaque: #7c95d6;
+  --cor-erro: #cf5b5b;
+  --cor-sucesso: #2f8f6b;
+  --instagram-escuro: #1c2d5b;
+  --instagram-claro: #6a8dd6;
+  --card-projeto: #162849;
+  --card-projeto-texto: #edf4ff;
+  --card-projeto-suave: #bfd0f8;
 }
 
 body.tema-escuro {
@@ -20,12 +23,17 @@ body.tema-escuro {
   --superficie: #121d2d;
   --borda: #24364d;
   --texto: #edf5ff;
-  --texto-suave: #adbad2;
-  --cor-primaria: #1d7ae7;
-  --cor-link: #7bb4ff;
-  --cor-destaque: #f4c542;
+  --texto-suave: #b9c9de;
+  --cor-primaria: #7ea3ff;
+  --cor-link: #b5cbff;
+  --cor-destaque: #7c95d6;
   --cor-erro: #ff7d7d;
   --cor-sucesso: #67d7a5;
+  --instagram-escuro: #0d1730;
+  --instagram-claro: #7aa1ff;
+  --card-projeto: #142240;
+  --card-projeto-texto: #edf4ff;
+  --card-projeto-suave: #c8d7ff;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -36,30 +44,35 @@ body {
   font-family: var(--fonte-texto);
   font-size: 1.0625rem;
   line-height: 1.6;
-  background: var(--fundo);
+  background: linear-gradient(180deg, #e5e7eb 0%, #dfe5ef 100%);
   color: var(--texto);
   transition: background-color 0.3s, color 0.3s;
 }
 
+body.tema-escuro {
+  background: linear-gradient(180deg, #0b1220 0%, #121d2d 100%);
+}
+
 h1, h2, h3 {
   font-family: var(--fonte-titulo);
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 1;
+  font-weight: 900;
+  text-transform: none;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   margin: 0 0 0.6em;
 }
 
 h2 { font-size: clamp(2.2rem, 8vw, 3.5rem); }
 
-/* Corte diagonal: repete o detalhe do avatar nos títulos */
+
 h2::before {
   content: "";
   display: inline-block;
-  width: 0.16em;
-  height: 0.8em;
-  margin-right: 0.3em;
-  background: var(--cor-destaque);
-  transform: skewX(-20deg);
+  width: 0.18em;
+  height: 0.9em;
+  margin-right: 0.35em;
+  background: linear-gradient(180deg, var(--instagram-escuro), var(--instagram-claro));
+  border-radius: 0.15em;
 }
 
 a {
@@ -80,7 +93,7 @@ section {
   scroll-margin-top: 4.5rem;
 }
 
-/* Cabeçalho (Flexbox) */
+
 .cabecalho {
   position: sticky;
   top: 0;
@@ -89,16 +102,18 @@ section {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  background: var(--fundo);
+  background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid var(--borda);
+  backdrop-filter: blur(6px);
 }
 
 .logo {
   margin-right: auto;
-  font: 800 1.7rem var(--fonte-titulo);
-  text-transform: uppercase;
+  font: 900 1.7rem var(--fonte-titulo);
+  text-transform: none;
+  letter-spacing: -0.04em;
   text-decoration: none;
-  color: var(--texto);
+  color: var(--instagram-escuro);
 }
 .logo:hover, .logo:focus { color: var(--cor-link); }
 
@@ -127,8 +142,8 @@ section {
   height: 2rem;
   padding: 0.15rem 0.5rem;
   font-size: 1rem;
-  color: var(--texto);
-  background: linear-gradient(135deg, #f7d25d, #cfe6ff);
+  color: #fff;
+  background: linear-gradient(135deg, var(--instagram-escuro), var(--instagram-claro));
   border: 1px solid var(--borda);
   border-radius: 999px;
   cursor: pointer;
@@ -146,34 +161,68 @@ body.tema-escuro .botao-icone {
   color: #f8fbff;
 }
 
-/* Botões */
+
 .botao {
   display: inline-block;
   padding: 0.8rem 1.6rem;
-  font: 600 1.05rem var(--fonte-texto);
+  font: 700 1.05rem var(--fonte-texto);
   color: #fff;
-  background: var(--cor-primaria);
-  border: 2px solid var(--cor-primaria);
-  border-radius: 0.4rem;
+  background: linear-gradient(135deg, var(--instagram-escuro), var(--instagram-claro));
+  border: 2px solid var(--instagram-escuro);
+  border-radius: 0.6rem;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+  box-shadow: 0 8px 18px rgba(28, 45, 91, 0.18);
 }
 .botao:hover, .botao:focus {
   color: #fff;
-  background: var(--cor-destaque);
-  border-color: var(--cor-destaque);
+  background: linear-gradient(135deg, var(--instagram-claro), var(--instagram-escuro));
+  border-color: var(--instagram-claro);
   transform: translateY(-2px);
 }
 
-/* Início */
-.hero { display: grid; gap: 2rem; padding-top: 3rem; }
-.saudacao { margin: 0 0 0.5rem; font-size: 1.3rem; font-weight: 600; color: var(--cor-link); }
+
+.hero {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  padding-top: 3rem;
+  padding-left: 8rem;
+  padding-right: 8rem;
+  overflow: hidden;
+}
+
+.hero-art {
+  position: absolute;
+  width: clamp(7rem, 9vw, 10.5rem);
+  height: auto;
+  z-index: 0;
+  opacity: 0.96;
+  pointer-events: none;
+  border-radius: 0.8rem;
+  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
+}
+
+.hero-art-esquerda {
+  left: 0.5rem;
+  top: 50%;
+  transform: translate(-30%, -50%);
+}
+
+.hero-art-direita {
+  right: 0.5rem;
+  top: 50%;
+  transform: translate(30%, -50%);
+}
+
+.saudacao { margin: 0 0 0.5rem; font-size: 1.3rem; font-weight: 700; color: var(--cor-link); }
 
 .hero h1 {
   font-size: clamp(3.2rem, 14vw, 7rem);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.05em;
   margin-bottom: 0.15em;
+  color: var(--instagram-escuro);
 }
 .hero h1 span { display: block; }
 
@@ -182,13 +231,16 @@ body.tema-escuro .botao-icone {
 .avatar {
   width: 100%;
   max-width: 20rem;
+  aspect-ratio: 1;
   height: auto;
-  clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 
 p { max-width: 42rem; }
 
-/* Habilidades (Grid) */
+
 .grade-habilidades, .lista-tags, .links-contato { list-style: none; margin: 0; padding: 0; }
 .grade-habilidades { display: grid; gap: 0.75rem; }
 
@@ -206,28 +258,52 @@ p { max-width: 42rem; }
 .nivel-2 { border-color: var(--cor-primaria); }
 .nivel-3 { border-color: var(--cor-destaque); color: var(--texto); }
 
-/* Projetos (Grid) */
+
 .grade-projetos { display: grid; gap: 1.5rem; }
 
 .card {
   display: flex;
   flex-direction: column;
-  background: var(--superficie);
-  border: 1px solid var(--borda);
-  transition: border-color 0.2s, transform 0.2s;
+  background: linear-gradient(180deg, var(--card-projeto) 0%, #1a315e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  color: var(--card-projeto-texto);
 }
-.card:hover { border-color: var(--cor-destaque); transform: translateY(-4px); }
+.card:hover, .card:focus-visible {
+  border-color: rgba(186, 206, 255, 0.95);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 24px rgba(19, 31, 58, 0.22);
+}
+.card:focus-visible { outline: 3px solid var(--cor-destaque); outline-offset: 4px; }
 .card img { display: block; width: 100%; height: auto; }
 
 .card-corpo { display: flex; flex: 1; flex-direction: column; gap: 0.75rem; padding: 1.25rem; }
-.card h3 { margin: 0; font-size: 1.9rem; }
-.card p { margin: 0; color: var(--texto-suave); }
-.card-link { margin-top: auto; font-weight: 600; }
+.card h3 { margin: 0; font-size: 1.9rem; color: var(--card-projeto-texto); }
+.card p { margin: 0; color: var(--card-projeto-suave); }
+.card-link { margin-top: auto; font-weight: 600; color: #ffffff; }
 
 .lista-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.lista-tags li { padding: 0.1rem 0.6rem; font-size: 0.9rem; border: 1px solid var(--borda); }
+.lista-tags li { padding: 0.1rem 0.6rem; font-size: 0.9rem; border: 1px solid rgba(255, 255, 255, 0.2); color: var(--card-projeto-texto); background: rgba(255, 255, 255, 0.06); }
 
-/* Formulário */
+
+.contato-layout {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.contato-ilustracao {
+  display: block;
+  width: min(100%, 16rem);
+  height: auto;
+  justify-self: center;
+  border-radius: 1.25rem;
+  box-shadow: 0 12px 24px rgba(28, 45, 91, 0.12);
+}
+
 .campo { display: grid; gap: 0.4rem; margin-bottom: 1.25rem; max-width: 36rem; }
 label { font-weight: 600; }
 
@@ -252,7 +328,7 @@ input[type="text"], input[type="email"], textarea {
 .sucesso { font-weight: 600; color: var(--cor-sucesso); }
 .links-contato { display: flex; gap: 1.5rem; margin-top: 2rem; font-weight: 600; }
 
-/* Rodapé e voltar ao topo */
+
 .rodape {
   display: flex;
   flex-wrap: wrap;
@@ -282,7 +358,71 @@ input[type="text"], input[type="email"], textarea {
 .botao-topo.visivel { display: grid; }
 .botao-topo:hover, .botao-topo:focus { color: #fff; background: var(--cor-destaque); }
 
-/* Tablet */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(10, 18, 30, 0.72);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 30;
+}
+
+.modal.ativo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-conteudo {
+  position: relative;
+  width: min(52rem, 100%);
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 24px 44px rgba(28, 45, 91, 0.18);
+}
+
+.modal-fechar {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--texto);
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.modal img {
+  display: block;
+  width: 100%;
+  max-height: 24rem;
+  object-fit: contain;
+  background: var(--superficie);
+}
+
+.modal-texto {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.modal-texto h3 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.modal-texto p {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
 @media (min-width: 768px) {
   section { padding-left: 2rem; padding-right: 2rem; }
   .cabecalho { padding-left: 2rem; padding-right: 2rem; }
@@ -291,9 +431,26 @@ input[type="text"], input[type="email"], textarea {
   .menu a { padding: 0.5rem 0.9rem; }
   .hero { grid-template-columns: 1.4fr 1fr; align-items: center; }
   .grade-habilidades, .grade-projetos { grid-template-columns: repeat(2, 1fr); }
+  .hero > div, .hero > .avatar { position: relative; z-index: 1; }
+  .contato-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+    column-gap: 2rem;
+  }
+  .contato-ilustracao {
+    justify-self: start;
+  }
 }
 
-/* Desktop */
+@media (max-width: 767px) {
+  .hero-art {
+    width: clamp(5.5rem, 18vw, 8rem);
+    opacity: 0.8;
+  }
+  .hero-art-esquerda { left: -1.2rem; }
+  .hero-art-direita { right: -1.2rem; }
+}
+
+
 @media (min-width: 1024px) {
   .grade-projetos { grid-template-columns: repeat(3, 1fr); }
 }

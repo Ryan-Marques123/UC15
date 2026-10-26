@@ -1,4 +1,3 @@
-// ===== Elementos da página =====
 const botaoMenu = document.getElementById('botaoMenu');
 const menuPrincipal = document.getElementById('menuPrincipal');
 const botaoTema = document.getElementById('botaoTema');
@@ -6,36 +5,44 @@ const botaoTopo = document.getElementById('botaoTopo');
 const listaProjetos = document.getElementById('listaProjetos');
 const formularioContato = document.getElementById('formularioContato');
 const mensagemSucesso = document.getElementById('mensagemSucesso');
+const modalProjeto = document.getElementById('modalProjeto');
+const modalImagem = document.getElementById('modalImagem');
+const modalTitulo = document.getElementById('modalTitulo');
+const modalDescricao = document.getElementById('modalDescricao');
+const fecharModal = document.getElementById('fecharModal');
 
-// ===== Dados dos projetos (troque pelos seus trabalhos reais) =====
+
 const projetos = [
   {
     titulo: 'Protótipo de app no Figma',
     descricao: 'Telas de um aplicativo de estudos, com fluxo de cadastro e tela inicial.',
     tecnologias: ['Figma'],
     link: '',
-    imagem: 'img/projeto-figma.svg',
-    alt: 'Ilustração de uma tela de celular em roxo com um botão vermelho'
+    imagem: 'projeto-figma-exemplo.svg',
+    alt: 'Ilustração mais detalhada de um protótipo de app em Figma com telas de cadastro e painel',
+    exemplo: 'projeto-figma-exemplo.svg'
   },
   {
     titulo: 'Página de apresentação',
     descricao: 'Primeira página do curso, feita só com HTML e CSS e organizada com tags semânticas.',
     tecnologias: ['HTML', 'CSS'],
     link: '',
-    imagem: 'img/projeto-html.svg',
-    alt: 'Ilustração de dois colchetes de código em roxo separados por uma barra vermelha'
+    imagem: 'projeto-html-exemplo.svg',
+    alt: 'Ilustração mais detalhada de uma landing page com cabeçalho, cards e botões em estilo responsivo',
+    exemplo: 'projeto-html-exemplo.svg'
   },
   {
     titulo: 'Exercícios de JavaScript',
     descricao: 'Pequenos programas com funções, condições e eventos, como a saudação deste site.',
     tecnologias: ['JavaScript'],
     link: '',
-    imagem: 'img/projeto-js.svg',
-    alt: 'Ilustração de chaves de código brancas dentro de um círculo roxo'
+    imagem: 'projeto-js-exemplo.svg',
+    alt: 'Ilustração mais detalhada de uma interface de exercícios em JavaScript com editor e botões interativos',
+    exemplo: 'projeto-js-exemplo.svg'
   }
 ];
 
-// Retorna a saudação de acordo com a hora (0 a 23)
+
 function obterSaudacao(hora) {
   if (hora >= 5 && hora < 12) {
     return 'Bom dia';
@@ -45,32 +52,30 @@ function obterSaudacao(hora) {
   return 'Boa noite';
 }
 
-// Escreve a saudação no início da página usando a hora atual
 function mostrarSaudacao() {
   const saudacao = obterSaudacao(new Date().getHours());
   document.getElementById('saudacao').textContent = saudacao + ', eu sou';
 }
 
-// Insere o ano atual no rodapé
+
 function mostrarAno() {
   document.getElementById('anoAtual').textContent = new Date().getFullYear();
 }
 
-// Abre ou fecha o menu no celular e atualiza os atributos de acessibilidade
+
 function alternarMenu() {
   const aberto = menuPrincipal.classList.toggle('aberto');
   botaoMenu.setAttribute('aria-expanded', aberto);
   botaoMenu.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
 }
 
-// Fecha o menu depois de clicar em um link (celular)
 function fecharMenu() {
   if (menuPrincipal.classList.contains('aberto')) {
     alternarMenu();
   }
 }
 
-// Atualiza o tema atual e salva a preferência no navegador.
+
 function aplicarTema(escuro) {
   document.body.classList.toggle('tema-escuro', escuro);
   botaoTema.textContent = escuro ? '☀️' : '🌙';
@@ -79,17 +84,17 @@ function aplicarTema(escuro) {
   try {
     localStorage.setItem('temaPortfolio', escuro ? 'escuro' : 'claro');
   } catch (erro) {
-    // Sem armazenamento disponível: o tema só vale nesta visita
+    
   }
 }
 
-// Alterna entre tema escuro e claro ao clicar no botão.
+
 function alternarTema() {
   const escuro = !document.body.classList.contains('tema-escuro');
   aplicarTema(escuro);
 }
 
-// Aplica o tema salvo na última visita ou mantém o claro como padrão.
+
 function carregarTemaSalvo() {
   try {
     const temaSalvo = localStorage.getItem('temaPortfolio');
@@ -100,7 +105,21 @@ function carregarTemaSalvo() {
   }
 }
 
-// Cria um card <article> para cada projeto do array
+
+function abrirProjeto(projeto) {
+  modalImagem.src = projeto.exemplo;
+  modalImagem.alt = projeto.alt;
+  modalTitulo.textContent = projeto.titulo;
+  modalDescricao.textContent = projeto.descricao;
+  modalProjeto.classList.add('ativo');
+  modalProjeto.setAttribute('aria-hidden', 'false');
+}
+
+function fecharProjetoModal() {
+  modalProjeto.classList.remove('ativo');
+  modalProjeto.setAttribute('aria-hidden', 'true');
+}
+
 function criarCards() {
   projetos.forEach(function (projeto) {
     const tags = projeto.tecnologias.map(function (tecnologia) {
@@ -108,18 +127,34 @@ function criarCards() {
     }).join('');
     const acao = projeto.link
       ? '<a class="card-link" href="' + projeto.link + '">Ver projeto</a>'
-      : '<span class="card-link">Em breve</span>';
+      : '<span class="card-link">Abrir exemplo</span>';
 
-    listaProjetos.insertAdjacentHTML('beforeend',
-      '<article class="card">' +
-        '<img src="' + projeto.imagem + '" alt="' + projeto.alt + '" width="600" height="340">' +
-        '<div class="card-corpo">' +
-          '<h3>' + projeto.titulo + '</h3>' +
-          '<p>' + projeto.descricao + '</p>' +
-          '<ul class="lista-tags">' + tags + '</ul>' +
-          acao +
-        '</div>' +
-      '</article>');
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Abrir projeto ' + projeto.titulo);
+    card.innerHTML =
+      '<img src="' + projeto.imagem + '" alt="' + projeto.alt + '" width="600" height="340">' +
+      '<div class="card-corpo">' +
+        '<h3>' + projeto.titulo + '</h3>' +
+        '<p>' + projeto.descricao + '</p>' +
+        '<ul class="lista-tags">' + tags + '</ul>' +
+        acao +
+      '</div>';
+
+    card.addEventListener('click', function () {
+      abrirProjeto(projeto);
+    });
+
+    card.addEventListener('keydown', function (evento) {
+      if (evento.key === 'Enter' || evento.key === ' ') {
+        evento.preventDefault();
+        abrirProjeto(projeto);
+      }
+    });
+
+    listaProjetos.appendChild(card);
   });
 }
 
@@ -129,7 +164,7 @@ function mostrarErro(idCampo, idErro, texto) {
   document.getElementById(idCampo).setAttribute('aria-invalid', texto ? 'true' : 'false');
 }
 
-// Valida o formulário: retorna true se tudo estiver certo e false se houver erro
+
 function validarFormulario() {
   const nome = document.getElementById('nome').value.trim();
   const email = document.getElementById('email').value.trim();
@@ -165,7 +200,7 @@ function validarFormulario() {
   return !(erroNome || erroEmail || erroMensagem || erroConsentimento);
 }
 
-// Trata o envio: não envia de verdade, valida e mostra o resultado
+
 function tratarEnvio(evento) {
   evento.preventDefault();
   mensagemSucesso.textContent = '';
@@ -176,12 +211,12 @@ function tratarEnvio(evento) {
   }
 }
 
-// Mostra o botão "voltar ao topo" só depois de rolar a página
+
 function controlarBotaoTopo() {
   botaoTopo.classList.toggle('visivel', window.scrollY > 400);
 }
 
-// ===== Início =====
+
 carregarTemaSalvo();
 mostrarSaudacao();
 mostrarAno();
@@ -193,4 +228,15 @@ menuPrincipal.querySelectorAll('a').forEach(function (link) {
 });
 botaoTema.addEventListener('click', alternarTema);
 formularioContato.addEventListener('submit', tratarEnvio);
+fecharModal.addEventListener('click', fecharProjetoModal);
+modalProjeto.addEventListener('click', function (evento) {
+  if (evento.target === modalProjeto) {
+    fecharProjetoModal();
+  }
+});
+document.addEventListener('keydown', function (evento) {
+  if (evento.key === 'Escape' && modalProjeto.classList.contains('ativo')) {
+    fecharProjetoModal();
+  }
+});
 window.addEventListener('scroll', controlarBotaoTopo);
