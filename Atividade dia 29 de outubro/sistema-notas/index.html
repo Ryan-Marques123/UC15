@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Notas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Sistema de Consulta de Notas</h1>
+
+      <form id="grade-form" novalidate>
+        <div class="field-group">
+          <label for="student-name">Nome do estudante</label>
+          <input id="student-name" name="student-name" type="text" placeholder="Digite o nome do estudante" />
+        </div>
+
+        <div class="grades-grid">
+          <div class="field-group">
+            <label for="grade-1">Nota 1</label>
+            <input id="grade-1" name="grade-1" type="number" min="0" max="10" step="0.1" placeholder="0 a 10" />
+          </div>
+
+          <div class="field-group">
+            <label for="grade-2">Nota 2</label>
+            <input id="grade-2" name="grade-2" type="number" min="0" max="10" step="0.1" placeholder="0 a 10" />
+          </div>
+
+          <div class="field-group">
+            <label for="grade-3">Nota 3</label>
+            <input id="grade-3" name="grade-3" type="number" min="0" max="10" step="0.1" placeholder="0 a 10" />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Calcular média</button>
+          <button type="button" id="reset-btn" class="btn btn-secondary">Limpar</button>
+        </div>
+      </form>
+
+      <div id="error-message" class="message error hidden" role="alert"></div>
+      <div id="result" class="message result hidden" aria-live="polite"></div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
